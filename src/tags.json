@@ -1,0 +1,17 @@
+[
+    {
+        "id": 0,
+        "titulo": "Aquarela",
+        "cor": "#A1D9A3"
+    },
+    {
+        "id": 1,
+        "titulo": "Sketch",
+        "cor": "#89BD71"
+    },
+    {
+        "id": 2,
+        "titulo": "Fotografia",
+        "cor": "#AACB64"
+    }
+]
