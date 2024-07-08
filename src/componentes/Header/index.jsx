@@ -1,3 +1,4 @@
+import { Link, useLocation } from "react-router-dom"
 import styled from "styled-components"
 
 const HeaderEstilizado = styled.header`
@@ -37,12 +38,18 @@ const HeaderEstilizado = styled.header`
 `
 
 const Header = () => {
+    const localizacao = useLocation();
+
     return (
         <HeaderEstilizado>
         <img src="/imagens/Logo.png" alt="Logo ArtFlix"/>
         <div>
-            <button className="active">HOME</button>
-            <button>NOVO VÍDEO</button>
+            <Link to="/">
+                <button className={`${localizacao.pathname === "/" ? "active" : "" }`}>HOME</button>
+            </Link>
+            <Link to="/novovideo">
+                <button className={`${localizacao.pathname === "/novovideo" ? "active" : "" }`} >NOVO VÍDEO</button>
+            </Link>
         </div>
         </HeaderEstilizado>
     )

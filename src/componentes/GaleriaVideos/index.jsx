@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import GrupoCards from "../GrupoCards"
+import GrupoCards from "./GrupoCards"
 import tags from "../../tags.json"
 
 

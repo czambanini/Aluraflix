@@ -1,40 +1,28 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import styled from "styled-components"
 import tags from "../../tags.json"
-import { IoCloseCircleOutline } from "react-icons/io5";
 
-const Overlay = styled.div`
-    background-color: rgba(97, 97, 97, 0.7);
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-`
-
-const DialogEstilizado = styled.dialog`
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #EBE8E9;
-    width: 800px;
-    padding: 50px 70px;
-    box-sizing: border-box;
-    border-radius: 20px;
-    border: 0;
-
-    h2{
-        font-family: 'SourceSansProBlack';
-        text-transform: uppercase;
-        color:#639D6C;
-        font-size: 36px;
-        margin: 30px 0;
-    }
-
+const ContainerEstilizado = styled.main`
+    padding: 60px 20%;
+    background-color: #dfdbdc;
+    flex-grow: 1;
+    
     form{
         display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 70px;
+    }
+
+    .campoTexto {
+        width: 48%;
+        display: flex;
         flex-direction: column;
+        margin: 10px 0;
+    }
+
+    .descricao {
+        width: 100%;
     }
 
     label{
@@ -45,27 +33,30 @@ const DialogEstilizado = styled.dialog`
         letter-spacing: 1px;
     }
 
-    input, select{
+    input, select, textarea{
         margin-bottom: 15px;
-        padding: 10px;
+        padding: 15px;
         border-radius: 7px;
         border: 1px solid #8f8f8f;
         padding-left: 10px;
         color: #7a7a7a;
     }
 
-    .botaoFechar{
-        position: fixed;
-        top: 11px;
-        right: 9px;
-        background-color: transparent;
-        border: 0;
-        font-size: 30px;
-        color: #7a7a7a;
+    h2{
+        font-family: 'SourceSansProBlack';
+        text-transform: uppercase;
+        color:#639D6C;
+        font-size: 40px;
+        margin: 0px 0 10px;
+        text-align: center;
     }
 
-    .botaoSalvar{
-        background-color:#639D6C;
+    h4{
+        text-align: center;
+        margin: 5px;
+    }
+
+    button{
         border: 0;
         border-radius: 10px;
         width: 40%;
@@ -78,88 +69,100 @@ const DialogEstilizado = styled.dialog`
         filter: drop-shadow(1px 1px 2px rgba(128, 128, 128, 0.7));
     }
 
-    .botaoSalvar:hover{
+    button:hover{
         background-color:#598f61;
     }
+
+    .botaoLimpar{
+        background-color:#a2c0a7;
+    }
+
+    .botaoSalvar{
+        background-color:#639D6C;
+    }
+
 `
 
-const ModalEditar = ({ video, aoEditar, aoCancelarEdicao }) => {
+const NovoVideo = ({ aoCriarVideo }) => {
     const [titulo, setTitulo] = useState('')
     const [categoria, setCategoria] = useState('')
     const [imagem, setImagem] = useState('')
     const [endereco, setEndereco] = useState('')
     const [descricao, setDescricao] = useState('')
 
-    useEffect(() => {
-        if (video) {
-            setTitulo(video.titulo || '');
-            setCategoria(video.tagId || '');
-            setImagem(video.path || '');
-            setEndereco(video.video || '');
-            setDescricao(video.descricao || '');
-        }
-    }, [video]);
-
     const aoSubmeter = (evento) => {
         evento.preventDefault()
-        const videoEditado = { titulo: titulo, path: imagem, video: endereco, descricao: descricao, id: video.id, tagId: categoria}
-        console.log('form enviado', videoEditado )
-        aoEditar(videoEditado)
+        const videoNovo = { titulo: titulo, path: imagem, video: endereco, descricao: descricao, tagId: categoria}
+        console.log('form enviado', videoNovo )
+        aoCriarVideo(videoNovo)
     }
 
     return (
-        <>
-        {video && <>
-            <Overlay />
-            <DialogEstilizado open={!!video}>
-                <h2>Editar Card</h2>
-                <form onSubmit={aoSubmeter}>
+        <ContainerEstilizado>
+            <h2>Novo Video</h2>
+            <h4>Complete o formulário para criar um novo card de vídeo.</h4>
+
+            <form onSubmit={aoSubmeter}>
+                <div className="campoTexto">
                     <label>Título</label>
                     <input
+                        required
                         label="Título" 
                         type="text" 
-                        placeholder={video.titulo} 
+                        placeholder="Insira o título do vídeo"
                         value={titulo}
                         onChange={(e) => setTitulo(e.target.value)}
                     />
+                </div>
+                <div className="campoTexto">
                    <label>Categoria</label>
                     <select 
+                        required
                         label="Categoria" 
                         value={categoria}
                         onChange={(e) => setCategoria(e.target.value)}>
                         <option />
                         {tags.map(tag => <option key={tag.titulo}>{tag.titulo}</option>)}
                     </select>
+                </div>
+                <div className="campoTexto">
                     <label>Imagem</label>
                     <input
+                        required
                         label="Imagem" 
                         type="text" 
+                        placeholder="Insira o link da imagem de capa"
                         value={imagem}
                         onChange={(e) => setImagem(e.target.value)}
                     /> 
+                </div>
+                <div className="campoTexto">
                     <label>Video</label>
                     <input
+                        required
                         label="Video" 
                         type="text" 
+                        placeholder="Insira o link do vídeo"
                         value={endereco}
                         onChange={(e) => setEndereco(e.target.value)}
                     /> 
+                </div>
+                <div className="campoTexto descricao">
                     <label>Descrição</label>
-                    <input
+                    <textarea
                         label="Descrição" 
                         type="text" 
+                        placeholder="Sobre o que é esse vídeo?"
                         value={descricao}
                         onChange={(e) => setDescricao(e.target.value)}
                     />
-                    <button className="botaoSalvar">Salvar Alterações</button>
+                </div>
+                    <button className="botaoLimpar">Limpar</button>
+                    <button className="botaoSalvar">Salvar</button>
                 </form>
-                <form method="dialog">
-                <button className="botaoFechar" onClick={() => aoCancelarEdicao()} ><IoCloseCircleOutline /></button>
-                </form>
-            </DialogEstilizado>
-        </>}
-        </>
+
+        </ContainerEstilizado>
     )
 }
 
-export default ModalEditar
+export default NovoVideo
