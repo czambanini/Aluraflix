@@ -11,7 +11,7 @@ const ContainerEstilizado = styled.div`
 const GrupoCards = ({ tag, videos, aoClicarEditar, aoClicarExcluir }) => {
     return (
         <>
-            <TituloGrupo cor={tag.cor}>{tag.titulo}</TituloGrupo>
+            <TituloGrupo $cor={tag.cor}>{tag.titulo}</TituloGrupo>
             <ContainerEstilizado>
                 {videos.map(video => <Card key={video.id} video={video} aoClicarEditar={aoClicarEditar} aoClicarExcluir={aoClicarExcluir}/>)}
             </ContainerEstilizado>

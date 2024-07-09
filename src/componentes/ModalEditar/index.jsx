@@ -85,7 +85,7 @@ const DialogEstilizado = styled.dialog`
 
 const ModalEditar = ({ video, aoEditar, aoCancelarEdicao }) => {
     const [titulo, setTitulo] = useState('')
-    const [categoria, setCategoria] = useState('')
+    const [categoria, setCategoria] = useState()
     const [imagem, setImagem] = useState('')
     const [endereco, setEndereco] = useState('')
     const [descricao, setDescricao] = useState('')
@@ -124,11 +124,12 @@ const ModalEditar = ({ video, aoEditar, aoCancelarEdicao }) => {
                     />
                    <label>Categoria</label>
                     <select 
+                        required
                         label="Categoria" 
                         value={categoria}
-                        onChange={(e) => setCategoria(e.target.value)}>
-                        <option />
-                        {tags.map(tag => <option key={tag.titulo}>{tag.titulo}</option>)}
+                        onChange={(e) => setCategoria(Number(e.target.value))}>
+                        <option value="" disabled>Selecione uma categoria</option>
+                        {tags.map(tag => <option key={tag.id} value={tag.id}>{tag.titulo}</option>)}
                     </select>
                     <label>Imagem</label>
                     <input

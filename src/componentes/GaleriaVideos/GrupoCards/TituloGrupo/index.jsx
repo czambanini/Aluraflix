@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 const TituloEstilizado = styled.div`
     hr{
-        border: 5px solid ${props => props.cor || '#639D6C'};
+        border: 5px solid ${props => props.$cor || '#639D6C'};
         margin: 0;
         filter: drop-shadow(2px 2px 2px rgba(115,115,115,0.9));
     }
@@ -11,7 +11,7 @@ const TituloEstilizado = styled.div`
         margin-left: 80px;
         width: 350px;
         height: 35px;
-        background-color: ${props => props.cor || '#639D6C'};
+        background-color: ${props => props.$cor || '#639D6C'};
         border-radius: 0 0 15px 15px;
         display: flex;
         justify-content: center;
@@ -30,9 +30,9 @@ const TituloEstilizado = styled.div`
     }
 `
 
-const TituloGrupo = ({ children, cor }) => {
+const TituloGrupo = ({ children, $cor }) => {
     return (
-        <TituloEstilizado cor={cor}>
+        <TituloEstilizado $cor={$cor}>
         <hr></hr>
         <div>
             <h2>{children}</h2>

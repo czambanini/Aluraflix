@@ -5,18 +5,18 @@ async function listaDeVideos() {
     return conexaoConvertida
 }
 
-async function criarVideo() {
+async function criarVideo(videoNovo) {
     const conexao = await fetch("http://localhost:3000/videos", {
         method: "POST",
         headers: {
             "Content-type": "application/json"
         },
         body: JSON.stringify({
-            titulo: titulo,
-            path: path,
-            video: video,
-            descricao: descricao,
-            tagId: tagId
+            titulo: videoNovo.titulo,
+            path: videoNovo.path,
+            video: videoNovo.video,
+            descricao: videoNovo.descricao,
+            tagId: videoNovo.tagId
         })
     })
     if(!conexao.ok) {
@@ -42,8 +42,8 @@ async function deletarVideo(id) {
     return conexaoConvertida
 }
 
-async function editarVideo(id, videoEditado) {
-    const conexao = await fetch(`http://localhost:3000/videos/${id}`, {
+async function editarVideo(videoEditado) {
+    const conexao = await fetch(`http://localhost:3000/videos/${videoEditado.id}`, {
         method: "PUT",
         headers: {
             "Content-type": "application/json"

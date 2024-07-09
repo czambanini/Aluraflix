@@ -120,9 +120,9 @@ const NovoVideo = ({ aoCriarVideo }) => {
                         required
                         label="Categoria" 
                         value={categoria}
-                        onChange={(e) => setCategoria(e.target.value)}>
+                        onChange={(e) => setCategoria(Number(e.target.value))}>
                         <option />
-                        {tags.map(tag => <option key={tag.titulo}>{tag.titulo}</option>)}
+                        {tags.map(tag => <option key={tag.id} value={tag.id}>{tag.titulo}</option>)}
                     </select>
                 </div>
                 <div className="campoTexto">

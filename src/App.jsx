@@ -4,11 +4,11 @@ import Header from "./componentes/Header"
 import Banner from "./componentes/Banner"
 import Footer from "./componentes/Footer"
 import GaleriaVideos from "./componentes/GaleriaVideos"
-import videos from "../videos.json"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ModalEditar from "./componentes/ModalEditar"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import NovoVideo from "./componentes/NovoVideo"
+import { conectaApi } from "./conectaApi"
 
 const CorDeFundo = styled.div`
   background-color: #EBE8E9;
@@ -28,21 +28,33 @@ const AppConteiner = styled.div`
 `
 
 function App() {
-
-const [videosDaGaleria, setVideosDaGaleria] = useState(videos.videos)
+const [videosDaGaleria, setVideosDaGaleria] = useState([])
 const [videoParaEditar, setvideoParaEditar] = useState(null)
 
-function editarVideo(videoEditado){
-  //atualizar o videoParaEditar com o videoEditado
-  setvideoParaEditar(null)
+useEffect(() => {
+  const videosApi = async () => {
+    const videos = await conectaApi.listaDeVideos();
+    setVideosDaGaleria(videos);
+  }
+  videosApi()
+}, [])
+
+const editarVideo = async (videoEditado) => {
+    await conectaApi.editarVideo(videoEditado)
+    setVideosDaGaleria((videosAtualizados) =>
+      videosAtualizados.map((video) => video.id === videoEditado.id ? videoEditado : video))
+    setvideoParaEditar(null)
 }
 
-function excluirVideo(videoExluido){
-  console.log(`Excluir video ${videoExluido.titulo}`)
+const excluirVideo = async(videoExluido) => {
+    await conectaApi.deletarVideo(videoExluido.id)
+    setVideosDaGaleria((videosAtualizados) =>
+      videosAtualizados.filter((video) => video.id !== videoExluido.id))
 }
 
-function criarVideo(videoNovo){
-  console.log(`Video criado: ${videoNovo.titulo}`)
+const criarVideo = async (videoNovo) => {
+    await conectaApi.criarVideo(videoNovo)
+    setVideosDaGaleria((videosAtualizados) => [...videosAtualizados, videoNovo])
 }
 
   return (
