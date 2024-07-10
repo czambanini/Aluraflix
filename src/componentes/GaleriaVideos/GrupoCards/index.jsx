@@ -9,6 +9,21 @@ const ContainerEstilizado = styled.div`
     overflow: auto;
     margin-bottom: 10px;
 
+    &::-webkit-scrollbar-track {
+    border-radius: .7rem;
+    background-color: transparent;
+  }
+
+    &::-webkit-scrollbar {
+        height: .7rem;
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--cor-principal-light);
+        border-radius: .7rem;
+  }
+
 `
 
 const GrupoCards = ({ tag, videos, aoClicarEditar, aoClicarExcluir }) => {

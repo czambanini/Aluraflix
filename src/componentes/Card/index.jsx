@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { CgClose } from "react-icons/cg";
 import { BiEdit } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const CardEstilizado = styled.div`
     width: 430px;
@@ -72,8 +73,10 @@ const Card = ({ video, aoClicarEditar, aoClicarExcluir }) => {
                     </button>
                 </BotaoEdicao>
             </div>
-            <img className="capa" src={video.path} alt=""/>
-            <h3>{video.titulo}</h3>
+            <Link to={`/videos/${video.id}`}>
+                <img className="capa" src={video.path} alt=""/>
+                <h3>{video.titulo}</h3>
+            </Link>
         </CardEstilizado>
     )
 }

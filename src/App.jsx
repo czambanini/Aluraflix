@@ -9,6 +9,7 @@ import ModalEditar from "./componentes/ModalEditar"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import NovoVideo from "./componentes/NovoVideo"
 import { conectaApi } from "./conectaApi"
+import Reproducao from "./componentes/Reproducao"
 
 const CorDeFundo = styled.div`
   background-color: #EBE8E9;
@@ -72,6 +73,7 @@ const criarVideo = async (videoNovo) => {
               </>
             } />
             <Route path="novovideo" element={<NovoVideo aoCriarVideo={videoNovo => criarVideo(videoNovo)}/>} />
+            <Route path="videos/:id" element={<Reproducao videos={videosDaGaleria} />} />
           </Routes>
 
           <Footer/>
