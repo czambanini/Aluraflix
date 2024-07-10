@@ -1,11 +1,32 @@
 import { createGlobalStyle } from "styled-components";
 import SourceSansProBlack from "./SourceSansPro-Black.otf"
+import SourceSansProRegular from "./SourceSansPro-Regular.otf"
 
 const EstilosGlobais = createGlobalStyle`
+
+:root{
+  --cor-de-fundo: #EBE8E9;
+
+  --cor-principal-light: #8bbd93;
+  --cor-principal: #639D6C;
+  --cor-principal-hover: #598f61;
+
+  --cor-fonte-cinza-claro: #7a7a7a;
+  --cor-fonte-cinza: #5e5e5e;
+
+  --cor-secundaria-1: #a7d49c;
+  --cor-secundaria-2: #89BD71;
+  --cor-secundaria-3: #AACB64;
+}
 
 @font-face {
   font-family: 'SourceSansProBlack';
   src: local('Source Sans Pro Black'), local('SourceSansProBlack'), url(${SourceSansProBlack});
+}
+
+@font-face {
+  font-family: 'SourceSansProRegular';
+  src: local('Source Sans Pro Regular'), local('SourceSansProRegular'), url(${SourceSansProRegular});
 }
 
 html {

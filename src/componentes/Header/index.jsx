@@ -7,8 +7,8 @@ const HeaderEstilizado = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #EBE8E9;
-    filter: drop-shadow(16px 16px 20px #EBE8E9);
+    background-color: var(--cor-de-fundo);
+    filter: drop-shadow(16px 16px 15px #cac5c5);
 
     img{
         width: 200px;
@@ -34,6 +34,19 @@ const HeaderEstilizado = styled.header`
 
     button.active{
         background: radial-gradient(circle, transparent 0%, rgba(115,115,115,0.3) 130%);
+    }
+
+    @media (max-width: 900px) {
+        padding: 0 0 0 50px;
+    }
+
+    @media (max-width: 570px) {
+        padding: 0;
+        justify-content: center;
+
+        div {
+            display: none;
+        }
     }
 `
 

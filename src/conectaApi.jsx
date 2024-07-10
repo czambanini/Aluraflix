@@ -37,9 +37,7 @@ async function deletarVideo(id) {
     if(!conexao.ok) {
         throw new Error("Não foi possível excluir o item")
     }
-    const conexaoConvertida = await conexao.json()
-
-    return conexaoConvertida
+    return;
 }
 
 async function editarVideo(videoEditado) {

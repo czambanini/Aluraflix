@@ -1,17 +1,34 @@
 import { useState } from "react"
 import styled from "styled-components"
 import tags from "../../tags.json"
+import Botao from "../Botao"
 
 const ContainerEstilizado = styled.main`
     padding: 60px 20%;
     background-color: #dfdbdc;
     flex-grow: 1;
+
+    h2{
+        font-family: 'SourceSansProBlack';
+        text-transform: uppercase;
+        color:var(--cor-principal);
+        font-size: 40px;
+        margin: 0px 0 10px;
+        text-align: center;
+    }
+
+    h4{
+        font-family: 'SourceSansProRegular';
+        color: var(--cor-fonte-cinza);
+        text-align: center;
+        margin: 5px;
+    }
     
     form{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        margin-top: 70px;
+        margin-top: 60px;
     }
 
     .campoTexto {
@@ -26,10 +43,11 @@ const ContainerEstilizado = styled.main`
     }
 
     label{
+        font-family: 'SourceSansProRegular';
         font-weight: 600;
         font-size: 16px;
-        color: #5e5e5e;
-        margin: 3px 0;
+        color: var(--cor-fonte-cinza);
+        margin: 5px 5px;
         letter-spacing: 1px;
     }
 
@@ -37,48 +55,26 @@ const ContainerEstilizado = styled.main`
         margin-bottom: 15px;
         padding: 15px;
         border-radius: 7px;
-        border: 1px solid #8f8f8f;
-        padding-left: 10px;
-        color: #7a7a7a;
+        border: 1px solid var(--cor-fonte-cinza-claro);
+        color: var(--cor-fonte-cinza-claro);
     }
 
-    h2{
-        font-family: 'SourceSansProBlack';
-        text-transform: uppercase;
-        color:#639D6C;
-        font-size: 40px;
-        margin: 0px 0 10px;
-        text-align: center;
+    @media (max-width: 900px) {
+        padding: 60px 8%;
     }
 
-    h4{
-        text-align: center;
-        margin: 5px;
-    }
+    @media (max-width: 570px) {
+        .campoTexto {
+        width: 100%;
+        }
 
-    button{
-        border: 0;
-        border-radius: 10px;
-        width: 40%;
-        margin: 30px auto;
-        text-transform: uppercase;
-        font-family: 'SourceSansProBlack';
-        letter-spacing: 1px;
-        color: white;
-        padding: 10px;
-        filter: drop-shadow(1px 1px 2px rgba(128, 128, 128, 0.7));
-    }
+        form{
+            margin-top: 20px;
+        }
 
-    button:hover{
-        background-color:#598f61;
-    }
-
-    .botaoLimpar{
-        background-color:#a2c0a7;
-    }
-
-    .botaoSalvar{
-        background-color:#639D6C;
+        input, select, textarea{
+        margin-bottom: 5px;
+        }
     }
 
 `
@@ -99,7 +95,7 @@ const NovoVideo = ({ aoCriarVideo }) => {
 
     return (
         <ContainerEstilizado>
-            <h2>Novo Video</h2>
+            <h2>Novo Vídeo</h2>
             <h4>Complete o formulário para criar um novo card de vídeo.</h4>
 
             <form onSubmit={aoSubmeter}>
@@ -137,10 +133,10 @@ const NovoVideo = ({ aoCriarVideo }) => {
                     /> 
                 </div>
                 <div className="campoTexto">
-                    <label>Video</label>
+                    <label>Vídeo</label>
                     <input
                         required
-                        label="Video" 
+                        label="Vídeo" 
                         type="text" 
                         placeholder="Insira o link do vídeo"
                         value={endereco}
@@ -157,9 +153,11 @@ const NovoVideo = ({ aoCriarVideo }) => {
                         onChange={(e) => setDescricao(e.target.value)}
                     />
                 </div>
-                    <button className="botaoLimpar">Limpar</button>
-                    <button className="botaoSalvar">Salvar</button>
+                    <Botao light type="reset" value="Reset">Limpar</Botao>
+                    <Botao type="submit" value="Submit">Salvar</Botao>
                 </form>
+
+
 
         </ContainerEstilizado>
     )

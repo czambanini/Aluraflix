@@ -18,7 +18,7 @@ const CorDeFundo = styled.div`
   flex-direction: column;
 `
 
-const AppConteiner = styled.div`
+const AppContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   max-width: 100%;
@@ -60,7 +60,7 @@ const criarVideo = async (videoNovo) => {
   return (
     <BrowserRouter>
       <CorDeFundo>
-        <AppConteiner>
+        <AppContainer>
           <EstilosGlobais />
           <Header/>
           
@@ -75,7 +75,7 @@ const criarVideo = async (videoNovo) => {
           </Routes>
 
           <Footer/>
-        </AppConteiner>
+        </AppContainer>
         <ModalEditar video={videoParaEditar} aoEditar={videoEditado => editarVideo(videoEditado)} aoCancelarEdicao={() => setvideoParaEditar(null)} />
       </CorDeFundo>
     </BrowserRouter>

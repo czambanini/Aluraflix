@@ -4,7 +4,7 @@ import { BiEdit } from "react-icons/bi";
 
 const CardEstilizado = styled.div`
     width: 430px;
-    min-width: 200px;
+    min-width: 360px;
     min-height: 350px;
     background-color: white;
     border-radius: 15px;
@@ -14,7 +14,7 @@ const CardEstilizado = styled.div`
         margin: 5px 10px;
         font-size: 18px;
         text-transform: uppercase;
-        color: #5e5e5e;
+        color: var(--cor-fonte-cinza);
         font-family: 'SourceSansProBlack';
     }
 
@@ -53,7 +53,7 @@ const BotaoEdicao = styled.div`
     }
 
     button:hover{
-        color: #777777;
+        color: var(--cor-fonte-cinza-claro);
     }
 `
 

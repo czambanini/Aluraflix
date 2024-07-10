@@ -6,6 +6,9 @@ const ContainerEstilizado = styled.div`
     display: flex;
     padding: 40px 30px;
     gap: 40px;
+    overflow: auto;
+    margin-bottom: 10px;
+
 `
 
 const GrupoCards = ({ tag, videos, aoClicarEditar, aoClicarExcluir }) => {

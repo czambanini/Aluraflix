@@ -2,16 +2,16 @@
     {
         "id": 0,
         "titulo": "Aquarela",
-        "cor": "#A1D9A3"
+        "cor": "var(--cor-secundaria-1)"
     },
     {
         "id": 1,
         "titulo": "Sketch",
-        "cor": "#89BD71"
+        "cor": "var(--cor-secundaria-2)"
     },
     {
         "id": 2,
         "titulo": "Fotografia",
-        "cor": "#AACB64"
+        "cor": "var(--cor-secundaria-3)"
     }
 ]

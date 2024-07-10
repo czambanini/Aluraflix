@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import styled from "styled-components"
 import tags from "../../tags.json"
 import { IoCloseCircleOutline } from "react-icons/io5";
+import Botao from "../Botao";
 
 const Overlay = styled.div`
     background-color: rgba(97, 97, 97, 0.7);
@@ -27,7 +28,7 @@ const DialogEstilizado = styled.dialog`
     h2{
         font-family: 'SourceSansProBlack';
         text-transform: uppercase;
-        color:#639D6C;
+        color:var(--cor-principal);
         font-size: 36px;
         margin: 30px 0;
     }
@@ -38,10 +39,11 @@ const DialogEstilizado = styled.dialog`
     }
 
     label{
+        font-family: 'SourceSansProRegular';
         font-weight: 600;
         font-size: 16px;
-        color: #5e5e5e;
-        margin: 3px 0;
+        color: var(--cor-fonte-cinza);
+        margin: 5px 5px;
         letter-spacing: 1px;
     }
 
@@ -49,9 +51,8 @@ const DialogEstilizado = styled.dialog`
         margin-bottom: 15px;
         padding: 10px;
         border-radius: 7px;
-        border: 1px solid #8f8f8f;
-        padding-left: 10px;
-        color: #7a7a7a;
+        border: 1px solid var(--cor-fonte-cinza-claro);
+        color: var(--cor-fonte-cinza-claro);
     }
 
     .botaoFechar{
@@ -64,22 +65,13 @@ const DialogEstilizado = styled.dialog`
         color: #7a7a7a;
     }
 
-    .botaoSalvar{
-        background-color:#639D6C;
-        border: 0;
-        border-radius: 10px;
-        width: 40%;
-        margin: 30px auto;
-        text-transform: uppercase;
-        font-family: 'SourceSansProBlack';
-        letter-spacing: 1px;
-        color: white;
-        padding: 10px;
-        filter: drop-shadow(1px 1px 2px rgba(128, 128, 128, 0.7));
+    @media (max-width: 900px) {
+        width: 500px;
     }
 
-    .botaoSalvar:hover{
-        background-color:#598f61;
+    @media (max-width: 570px) {
+        width: 90%;
+        padding: 70px 20px;
     }
 `
 
@@ -152,7 +144,7 @@ const ModalEditar = ({ video, aoEditar, aoCancelarEdicao }) => {
                         value={descricao}
                         onChange={(e) => setDescricao(e.target.value)}
                     />
-                    <button className="botaoSalvar">Salvar Alterações</button>
+                    <Botao>Salvar Alterações</Botao>
                 </form>
                 <form method="dialog">
                 <button className="botaoFechar" onClick={() => aoCancelarEdicao()} ><IoCloseCircleOutline /></button>
